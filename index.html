@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f1f1f">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="WinTerm">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
+<meta name="description" content="A Windows Terminal-style PowerShell and Command Prompt for iPhone.">
+<title>WinTerm</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="stylesheet" href="terminal.css">
+</head>
+<body>
+<div id="app">
+  <header id="titlebar">
+    <div id="tabs" role="tablist" aria-label="Tabs"></div>
+    <button id="newtab" class="tb-btn" aria-label="New tab"><svg viewBox="0 0 14 14"><path d="M7 1.5v11M1.5 7h11"/></svg></button>
+    <button id="menubtn" class="tb-btn" aria-label="Profiles and settings" aria-haspopup="menu"><svg viewBox="0 0 14 14"><path d="M3 5.25l4 4 4-4"/></svg></button>
+  </header>
+
+  <main id="stage"></main>
+
+  <nav id="keybar" aria-label="Extra keys">
+    <button class="key mod" data-k="Tab">Tab</button>
+    <button class="key mod" data-k="Esc">Esc</button>
+    <button class="key mod" data-k="^C">^C</button>
+    <button class="key" data-k="Up" aria-label="Previous command">↑</button>
+    <button class="key" data-k="Down" aria-label="Next command">↓</button>
+    <button class="key" data-k="Left" aria-label="Cursor left">←</button>
+    <button class="key" data-k="Right" aria-label="Cursor right">→</button>
+    <button class="key" data-k="\">\</button>
+    <button class="key" data-k="|">|</button>
+    <button class="key" data-k="-">-</button>
+    <button class="key" data-k="/">/</button>
+    <button class="key" data-k="~">~</button>
+    <button class="key" data-k="$">$</button>
+    <button class="key" data-k="&quot;">"</button>
+    <button class="key" data-k=":">:</button>
+    <button class="key" data-k="*">*</button>
+    <button class="key" data-k="&gt;">&gt;</button>
+    <button class="key" data-k="&amp;">&amp;</button>
+  </nav>
+
+  <div id="menu" class="menu" role="menu" hidden>
+    <button role="menuitem" data-act="pwsh"><span class="mi-icon" data-icon="pwsh"></span>PowerShell</button>
+    <button role="menuitem" data-act="cmd"><span class="mi-icon" data-icon="cmd"></span>Command Prompt</button>
+    <hr>
+    <button role="menuitem" data-act="settings"><span class="mi-icon">⚙</span>Settings</button>
+    <button role="menuitem" data-act="about"><span class="mi-icon">ⓘ</span>About</button>
+  </div>
+
+  <section id="editor" hidden aria-label="Notepad">
+    <div class="ed-bar">
+      <span id="ed-title"></span>
+      <button id="ed-save" class="btn primary">Save</button>
+      <button id="ed-close" class="btn">Close</button>
+    </div>
+    <textarea id="ed-text" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
+  </section>
+
+  <div id="sheet" class="sheet" hidden>
+    <div class="panel" role="dialog" aria-modal="true" aria-labelledby="set-h">
+      <h2 id="set-h">Settings</h2>
+      <label class="row">Color scheme <select id="set-scheme"></select></label>
+      <div class="row">Font size
+        <span class="stepper"><button class="btn" data-fs="-1" aria-label="Smaller">−</button><output id="set-fs"></output><button class="btn" data-fs="1" aria-label="Larger">+</button></span>
+      </div>
+      <label class="row">Default profile
+        <select id="set-profile"><option value="pwsh">PowerShell</option><option value="cmd">Command Prompt</option></select>
+      </label>
+      <label class="row">Extra keys bar <input type="checkbox" id="set-keys"></label>
+      <button id="set-reset" class="btn danger wide">Reset virtual drive C:</button>
+      <p class="hint">Install: tap Share ▸ <b>Add to Home Screen</b> for full-screen mode. Works offline.</p>
+      <button id="set-close" class="btn primary wide">Done</button>
+    </div>
+  </div>
+</div>
+
+<input id="cmd" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="enter" aria-label="Command input">
+<script src="terminal.js"></script>
+</body>
+</html>
